@@ -17,10 +17,6 @@ public class UserController {
 
     @PostMapping("/join")
     public String join(JoinReqDto joinReqDto) {
-        System.out.println(joinReqDto.getUsername());
-        System.out.println(joinReqDto.getPassword());
-        System.out.println(joinReqDto.getEmail());
-
 
         if (joinReqDto.getUsername() == null || joinReqDto.getUsername().isEmpty()) {
             throw new CustomException("username을 작성해주세요");
@@ -32,7 +28,7 @@ public class UserController {
             throw new CustomException("email을 작성해주세요");
         }
 
- 
+        userService.회원가입(joinReqDto);
         return "redirect:/loginForm";
     }
 
