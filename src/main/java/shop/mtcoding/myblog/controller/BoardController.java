@@ -12,6 +12,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import shop.mtcoding.myblog.dto.board.BoardReq.BoardSaveReqDto;
 import shop.mtcoding.myblog.handler.ex.CustomException;
 import shop.mtcoding.myblog.model.User;
+import shop.mtcoding.myblog.service.BoardService;
 
 @Controller
 public class BoardController {
@@ -19,6 +20,10 @@ public class BoardController {
     @Autowired
     private HttpSession session;
 
+    @Autowired
+    private BoardService boardService;
+
+    // 글쓰기
     @PostMapping("/board")
     public String save(BoardSaveReqDto boardSaveReqDto){
         User principal = (User) session.getAttribute("principal");
@@ -45,24 +50,17 @@ public class BoardController {
     }
 
 
-
-
-
-
-
-
-
     @GetMapping({"/", "/board"})
     public String main(){
         return "board/main";
     }
 
-    @GetMapping("/detail/{id}")
+    @GetMapping("/board/{id}")
     public String detail(){
         return "board/detail";
     }
 
-    @GetMapping("/detail/saveForm")
+    @GetMapping("/board/saveForm")
     public String saveForm(){
         return "board/saveForm";
     }
