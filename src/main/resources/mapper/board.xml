@@ -5,6 +5,25 @@
 
 <mapper namespace="shop.mtcoding.myblog.model.BoardRepository">
 
+    <select id="findAll" resultType="shop.mtcoding.myblog.model.Board">
+        select * from board_tb
+    </select>
+
+    <select id="findById" resultType="shop.mtcoding.myblog.model.Board">
+        select * from board_tb where id = #{id}
+    </select>    
+
+    <insert id="insert">
+        insert into board_tb (title, content, thumbnail, user_id, created_at) values(#{title}, #{content}, #{thumbnail}, #{userId}, now())
+    </insert>    
+
+    <delete id="deleteById" >
+        delete from board_tb where id = #{id}
+    </delete>    
+
+    <update id="updateById" >
+        update board_tb set title = #{title}, content = #{content}, thumbnail = #{thumbnail} where id = #{id}
+    </update> 
     
 
 </mapper>
