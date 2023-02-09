@@ -7,6 +7,7 @@
             <form action="/join" method="post" onsubmit="return valid()">
                 <div class="form-group mb-2">
                     <input type="text" name="username" class="form-control" placeholder="Enter username" id="username">
+                    <button type="button" class="badge bg-secondary ms-2">중복확인</button>
                 </div>
 
                 <div class="form-group mb-2">
@@ -27,5 +28,11 @@
 
         </div>
     </div>
+
+  <script>
+            function valid() {
+                alert("회원가입 유효성 검사");
+            }
+  </script>
 
     <%@ include file="../layout/footer.jsp" %>
