@@ -44,9 +44,8 @@ public class BoardController {
         }
 
         boardService.글쓰기(boardSaveReqDto, principal.getId());
-
+     
         return "redirect:/";
-
     }
 
 
