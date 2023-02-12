@@ -1,8 +1,10 @@
 package shop.mtcoding.myblog.controller;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.delete;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
 import java.sql.Timestamp;
@@ -91,5 +93,21 @@ public class BoardControllerTest {
         assertThat(dto.getUserId()).isEqualTo(1);
         assertThat(dto.getTitle()).isEqualTo("1번째 제목");
 
+    }
+
+    @Test
+    public void delete_test() throws Exception {
+        // given
+        int id = 1;
+
+        // when
+        ResultActions resultActions = mvc.perform(delete("/board/" + id)
+                                      .session(mockSession));
+        String responseBody = resultActions.andReturn().getResponse().getContentAsString();                                        
+        System.out.println("테스트 : " + responseBody);
+
+        // then
+        resultActions.andExpect(status().isOk());
+        resultActions.andExpect(jsonPath("$.code").value(1));
     }
 }
