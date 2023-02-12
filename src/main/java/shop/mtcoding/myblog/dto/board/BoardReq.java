@@ -12,5 +12,11 @@ public class BoardReq {
         private String content;
     }
 
-  
+    @Setter
+    @Getter
+    public static class BoradUpdateReqDto {
+        private String title;
+        private String content;
+    }
+
 }

@@ -5,25 +5,27 @@
     <div class="container my-3">
         <c:if test="${dto.userId == principal.id}" >
             <div class="mb-3">
-                <a href="/board/1/updateForm" class="btn btn-warning">수정</a>
+                <a href="/board/${dto.id}/updateForm" class="btn btn-warning">수정</a>
                 <button onclick="deleteById(${dto.id})" class="btn btn-danger">삭제</button>
             </div>
         </c:if>
 
         <div class="mb-2">
-            글 번호 : <span id="id"><i>${dto.id} </i></span> 작성자 : <span><i>${dto.username} </i></span>
+            글 번호 : <span id="id"><i>${dto.id}</i></span> 
+            
+            작성자 : <span><i>${dto.username} </i></span>
              <i id="heart" class="fa-regular fa-heart my-xl my-cursor" value="no"></i>
         </div>
         <script>
             function deleteById(id){
                 $.ajax({
-                    type:"delete",
-                    url:"/board/" + id,
+                    type: "delete",
+                    url: "/board/" + id,
                     dataType:"json"
-                }).done((res)=>{
+                }).done((res) => {
                     alert(res.msg);
                     location.href="/";
-                }).fail((err)=>{
+                }).fail((err) => {
                     alert(err.responseJSON.msg);
                 });
             }
