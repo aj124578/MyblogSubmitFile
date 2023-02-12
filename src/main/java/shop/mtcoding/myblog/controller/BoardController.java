@@ -28,8 +28,6 @@ public class BoardController {
     @Autowired
     private BoardRepository boardRepository;
 
-
-
     // 글쓰기
     @PostMapping("/board")
     public String save(BoardSaveReqDto boardSaveReqDto){
