@@ -10,6 +10,7 @@ import shop.mtcoding.myblog.dto.board.BoardReq.BoradUpdateReqDto;
 import shop.mtcoding.myblog.handler.ex.CustomApiException;
 import shop.mtcoding.myblog.model.Board;
 import shop.mtcoding.myblog.model.BoardRepository;
+import shop.mtcoding.myblog.util.HtmlParser;
 
 @Transactional(readOnly = true)
 @Service
@@ -20,11 +21,13 @@ public class BoardService {
 
     @Transactional
     public void 글쓰기(BoardSaveReqDto boardSaveReqDto, int userId){
+        String thumbnail = HtmlParser.getThumbnail(boardSaveReqDto.getContent());
+
 
         int result = boardRepository.insert(
                 boardSaveReqDto.getTitle(),
                 boardSaveReqDto.getContent(),
-                "/images/dora.png",
+                thumbnail,
                 userId);
                 
         if(result != 1){
