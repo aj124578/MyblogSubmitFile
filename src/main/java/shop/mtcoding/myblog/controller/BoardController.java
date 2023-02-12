@@ -5,12 +5,14 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import shop.mtcoding.myblog.dto.board.BoardReq.BoardSaveReqDto;
 import shop.mtcoding.myblog.handler.ex.CustomException;
+import shop.mtcoding.myblog.model.BoardRepository;
 import shop.mtcoding.myblog.model.User;
 import shop.mtcoding.myblog.service.BoardService;
 
@@ -22,6 +24,11 @@ public class BoardController {
 
     @Autowired
     private BoardService boardService;
+
+    @Autowired
+    private BoardRepository boardRepository;
+
+
 
     // 글쓰기
     @PostMapping("/board")
@@ -50,7 +57,8 @@ public class BoardController {
 
 
     @GetMapping({"/", "/board"})
-    public String main(){
+    public String main(Model model){
+        model.addAttribute("dtos", boardRepository.findAllWithUser());
         return "board/main";
     }
 
