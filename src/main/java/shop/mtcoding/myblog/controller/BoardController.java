@@ -54,7 +54,7 @@ public class BoardController {
             throw new CustomApiException("content를 작성해주세요.");
         }
 
-        boardService.게시글수정();
+        boardService.게시글수정(id, boradUpdateReqDto, principal.getId());
         
         return new ResponseEntity<>(new ResponseDto<>(1, "게시글수정성공", null), HttpStatus.OK);
     }
