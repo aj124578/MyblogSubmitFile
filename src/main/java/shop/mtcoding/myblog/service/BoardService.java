@@ -6,7 +6,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import shop.mtcoding.myblog.dto.board.BoardReq.BoardSaveReqDto;
-import shop.mtcoding.myblog.handler.ex.CustomException;
+import shop.mtcoding.myblog.handler.ex.CustomApiException;
 import shop.mtcoding.myblog.model.BoardRepository;
 
 @Transactional(readOnly = true)
@@ -26,7 +26,7 @@ public class BoardService {
                 userId);
                 
         if(result != 1){
-            throw new CustomException("글쓰기 실패", HttpStatus.INTERNAL_SERVER_ERROR);
+            throw new CustomApiException("글쓰기 실패", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
