@@ -12,6 +12,7 @@
 
         <div class="mb-2">
             글 번호 : <span id="id"><i>${dto.id} </i></span> 작성자 : <span><i>${dto.username} </i></span>
+             <i id="heart" class="fa-regular fa-heart my-xl my-cursor" value="no"></i>
         </div>
 
         <div>
