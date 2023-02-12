@@ -3,14 +3,13 @@ package shop.mtcoding.myblog.dto.board;
 import lombok.Getter;
 import lombok.Setter;
 
-public class BoardReq {
+public class BoardResp {
     
     @Setter
     @Getter
-    public static class BoardSaveReqDto{
+    public static class BoardMainRespDto {
+        private int id;
         private String title;
-        private String content;
+        private String username;
     }
-
-  
 }
