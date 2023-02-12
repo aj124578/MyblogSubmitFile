@@ -14,6 +14,20 @@
             글 번호 : <span id="id"><i>${dto.id} </i></span> 작성자 : <span><i>${dto.username} </i></span>
              <i id="heart" class="fa-regular fa-heart my-xl my-cursor" value="no"></i>
         </div>
+        <script>
+            function deleteById(id){
+                $.ajax({
+                    type:"delete",
+                    url:"/board/" + id,
+                    dataType:"json"
+                }).done((res)=>{
+                    alert(res.msg);
+                    location.href="/";
+                }).fail((err)=>{
+                    alert(err.responseJSON.msg);
+                });
+            }
+        </script>
 
         <div>
             <h3>${dto.title}</h3>
@@ -26,7 +40,7 @@
 
         <div class="card">
             <form>
-                <div class="card-body">
+                <div class="card-body"> 
                     <textarea id="reply-content" class="form-control" rows="1"></textarea>
                 </div>
                 <div class="card-footer">
