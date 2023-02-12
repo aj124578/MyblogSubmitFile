@@ -32,6 +32,7 @@ public class BoardController {
     @Autowired
     private BoardRepository boardRepository;
 
+    // 게시글 삭제
     @DeleteMapping("/board/{id}")
     public @ResponseBody ResponseEntity<?> delete(@PathVariable int id){
         User principal = (User) session.getAttribute("principal");
@@ -39,11 +40,11 @@ public class BoardController {
             throw new CustomApiException("인증이 되지 않았습니다", HttpStatus.UNAUTHORIZED);
         }
 
-        boardService.게시글삭제(id);
+        boardService.게시글삭제(id, principal.getId());
         return new ResponseEntity<>(new ResponseDto<>(1, "삭제성공", null), HttpStatus.OK);
     }
 
-    // 글쓰기
+    // 게시글 쓰기
     @PostMapping("/board")
     public String save(BoardSaveReqDto boardSaveReqDto){
         User principal = (User) session.getAttribute("principal");
