@@ -24,7 +24,7 @@ public class UserControllerTest {
     @Autowired
     private MockMvc mvc;
     
-
+    /* join_test */
     @Test
     public void join_test() throws Exception {
         // given
@@ -38,6 +38,8 @@ public class UserControllerTest {
         resultActions.andExpect(status().is3xxRedirection());
     }
 
+
+    /* login_test */
     @Test
     public void login_test() throws Exception {
         // given
