@@ -60,7 +60,8 @@ public class BoardService {
             throw new CustomApiException("게시글을 수정할 권한이 없습니다", HttpStatus.FORBIDDEN);
         }
 
-        int result = boardRepository.updateById(id, boradUpdateReqDto.getTitle(), boradUpdateReqDto.getContent(), null);
+        int result = boardRepository.updateById(id, boradUpdateReqDto.getTitle(), boradUpdateReqDto.getContent(), 
+                "images/dora.png");
         if (result != 1) {
             throw new CustomApiException("게시글을 수정할 권한이 없습니다", HttpStatus.INTERNAL_SERVER_ERROR);
            }
